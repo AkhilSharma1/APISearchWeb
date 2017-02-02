@@ -1,30 +1,35 @@
+function loadResults(){
 
-function searchTweets(){
-	var keyword = document.getElementById("keywordTextbox").value;
-	$.getJSON("http://thunderx.cise.ufl.edu:8080/api/s/".concat(keyword) , showResults);
+    var keyword = document.getElementById("keywordTextbox").value;
+    localStorage.setItem('keyword',keyword);
+    window.location.href = 'searchResult.html';
+    // alert(keyword);
 }
+/*
 
 function showResults(response){
   var results = response.results;
-  /*var keyword = document.getElementById("keywordTextbox").value;
-  results = results.filter(function (item) {
-              return (item.title).indexOf(keyword) >= 0 | (item.text).indexOf(keyword) >= 0 |
-              (item.date).indexOf(keyword) >= 0;
-            });*/
+    console.log(results);
   var rows = results.map(function(item){
     return createRow(item.title, item.image, item.date);
   });
-  document.getElementById("apiList").innerHTML = "<input type='submit' value='Back' onclick='showSearchForm();' /><br /><table id='resultsTable'></table>";
+    var apiList = document.getElementById("apiList");
+    if($('apiList').length == 0) {
+        alert('no exist');
+    }
+    apiList.innerHTML = "<input type='submit' value='Back' onclick='showSearchForm();' />" +
+      "<br/><table id='resultsTable'></table>";
   rows.forEach(function(row){
     document.getElementById("resultsTable").appendChild(row);
   });
-  document.getElementById("searchForm").style.display = "none";
+  // document.getElementById("searchForm").style.display = "none";
   document.getElementById("apiList").style.display = "block";
 }
 
 function showSearchForm() {
+    // history.back();
   document.getElementById("searchForm").style.display = "block";
-  document.getElementById("apiList").style.display = "none";
+  // document.getElementById("apiList").style.display = "none";
 }
 
 function createRow(user, iconUrl, tweet){
@@ -43,4 +48,4 @@ function createRow(user, iconUrl, tweet){
   tweetCell.appendChild(document.createTextNode(user + ": " + tweet));
   tweetRow.appendChild(tweetCell);
   return tweetRow;
-}
+}*/
